@@ -1,0 +1,29 @@
+class Solution {
+public:
+int help[3]={0,-1,1};
+int memo[71][71][71];
+int rec(vector<vector<int>>& grid,int r,int c1,int c2,int m ,int n){
+    if(r==m)return 0;
+    if(c1<0 ||c2<0 ||c1>n-1  ||c2>n-1)return INT_MIN;
+    if(memo[r][c1][c2]!=-1)return memo[r][c1][c2];
+    int maxi=0;
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            maxi=max(maxi,rec(grid,r+1,c1+help[i],c2+help[j],m ,n));
+        }
+    }
+    if(c1==c2)
+    maxi += grid[r][c1] 
+    else 
+    maxi+= grid[r][c1] + grid[r][c2];
+    return memo[r][c1][c2] = maxi;
+}
+
+int cherryPickup(vector<vector<int>>& grid){
+    int m=grid.size();
+    if(!m)return 0;
+    int n=grid[0].size();
+    memset(memo,-1,sizeof memo);
+    return rec(grid,0,0,n-1,m,n);
+}
+};
