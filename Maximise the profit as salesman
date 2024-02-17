@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int dynamicp(vector<int>& dp, vector<vector<int>>& o, int n) {
+        vector<int> s, e; 
+        for (auto i : o) {
+            s.push_back(i[0]);
+            e.push_back(i[1]);
+        }
+        for (int i = o.size() - 1; i >= 0; i--) {
+            int temp = upper_bound(s.begin(), s.end(), e[i]) - s.begin();
+            dp[i] = max(o[i][2] + dp[temp], dp[i + 1]);
+        }
+        return (*max_element(dp.begin(), dp.end()));
+    }
+    int maximizeTheProfit(int n, vector<vector<int>>& offers) {
+        vector<int> dp(offers.size() + 1, 0);
+        sort(offers.begin(), offers.end());
+
+        return dynamicp(dp, offers, n);
+    }
+};
