@@ -1,0 +1,18 @@
+
+class Solution {
+public:
+    
+        int rec(TreeNode* root,int &ans,int flag){
+            if(!root)return 0;
+            if(root->left==NULL && root->right==NULL && flag==1){ans+=root->val;}
+            rec(root->left,ans,1);
+            rec(root->right,ans,0);
+            return ans;
+        }
+        int sumOfLeftLeaves(TreeNode* root) {
+            int ans=0;int res=0;int flag=1;
+            if(root->left==NULL and root->right==NULL){res= 0;return res;}
+            res= rec(root,ans,1);
+             return res;
+        }
+};
