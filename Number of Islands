@@ -1,0 +1,29 @@
+class Solution {
+public:
+      
+    int row[4]={1,-1,0,0};
+    int col[4]={0,0,1,-1};
+    void dfs(int r,int c,vector<vector<char>>& grid){
+        grid[r][c]='0';
+        for(int d=0;d<4;d++){
+            int nr=r+row[d];
+            int nc=c+col[d];
+            if(nr<grid.size()&& nr>=0 &&nc<grid[0].size()&& nc>=0&& grid[nr][nc]=='1')
+            dfs(nr,nc,grid);
+        }
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int isl=0;
+        int n=grid.size();
+        int m=grid[0].size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1'){
+                    isl++;
+                    dfs(i,j,grid);
+                }
+            }
+        }
+        return isl;
+    }
+};
