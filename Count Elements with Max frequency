@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        vector<int>ans(101,0);
+        for(int i=0;i<nums.size();i++){
+            ans[nums[i]]++;
+        }
+        sort(ans.begin(),ans.end());
+        int res=0;int tm=ans.size()-1;int j=ans.size()-1;
+        while(ans[tm]==ans[j]){res+=ans[j];j--;}
+        return res;
+    }
+};
