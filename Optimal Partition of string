@@ -1,0 +1,16 @@
+class Solution{
+    public:
+    int partitionString(string s){
+        unordered_set<char>mp;int n=s.length();
+        int i=0;int mini=0;
+        while(i<n){
+            mini++;
+            while(i<n && mp.find(s[i])==mp.end()){
+                mp.insert(s[i]);
+                i++;
+            }
+            mp.clear();
+        }
+        return mini;
+    }
+};
