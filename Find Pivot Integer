@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int pivotInteger(int n) {
+        int l=1,r=n;
+        int sum=(n*(n+1))/2;
+        while(l<=r){
+            int m=l+(r-l)/2;
+            int fir=(m*(m+1))/2;
+            int s=sum-fir+m;
+            if(fir == s)return m;
+            else if(fir < s){
+                l = m + 1;
+            }else{
+                r = m - 1;
+            }
+        }
+        return -1;
+        }
+    
+};
