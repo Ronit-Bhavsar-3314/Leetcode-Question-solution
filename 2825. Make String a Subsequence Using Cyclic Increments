@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool canMakeSubsequence(string s, string s1) {
+        int i=0,j=0;
+        while(i<s.length() && j<s1.length()){
+            if(s[i]==s1[j]){i++;j++;}
+            else if(s[i]=='z'){
+                s[i]='a';
+                if(s[i]==s1[j]){
+                    i++;j++;
+                }
+            }
+            else if(++s[i]==s1[j]){
+                i++;j++;
+            }
+            else i++;
+        }
+        if(j==s1.length())return true;
+        else return false;
+    }
+};
